@@ -7,4 +7,4 @@ Previous attempts:
 2. TextView: Chronometer view inherits from TextView after all, so this can be used to implement milliseconds. Used a Handler to increment milliseconds and update
 TextView. Still too slow due to the overhead of displaying to UI.
 3. Background service: Runs separately from the main app. The service still can't update the UI every millisecond, it lags. Updates UI every 40 milliseconds, when
-time variable is incremented by 40ms too. This is a lesser duration that human persistence of vision, so it still appears to change smoothly. Time blinks when paused.
+time variable is incremented by 40ms too. This is a lesser duration that human persistence of vision, so it still appears to change smoothly. Timer blinks when paused.
