@@ -8,6 +8,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -107,7 +109,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetTimer(blinkinganimator: Animator, stopwatch: TextView, playbtn: Button)
     {
-        milliseconds = 0
         stopService(serviceIntent)
         blinkinganimator.cancel()
 
@@ -118,10 +119,11 @@ class MainActivity : AppCompatActivity() {
             stopwatch.setTextColor(getResources().getColor(R.color.white))
         }
 
-        setPlay(playbtn)
-
-        stopwatch.text = getTimeStringFromInt(milliseconds)
-
+        Handler(Looper.getMainLooper()).postDelayed({
+            milliseconds = 0
+            setPlay(playbtn)
+            stopwatch.text = getTimeStringFromInt(milliseconds)
+        }, 100)
     }
 
     private val updateTime: BroadcastReceiver = object : BroadcastReceiver()
